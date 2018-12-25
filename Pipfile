@@ -9,6 +9,7 @@ verify_ssl = true
 django = "==2.1.4"
 autopep8 = "*"
 pillow = "*"
+django-cleanup = "*"
 
 [requires]
 python_version = "3.6"
