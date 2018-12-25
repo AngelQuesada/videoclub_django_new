@@ -1,20 +1,30 @@
 from django.db import models
+from django.utils.safestring import mark_safe
+from django.conf import settings
 
 class Actor(models.Model):
     nombre = models.CharField(max_length=100)
-    fecha_nacimiento = models.DateField()
+    fecha_nacimiento = models.DateField(
+        'Fecha de nacimiento'
+    )
     fecha_defuncion = models.DateField(
+        'Fallecido',
         null=True,
         blank=True,
     )
     foto = models.ImageField(
-        upload_to = 'media/images/actores/', 
-        default = 'media/images/actores/sin_foto.jpg'
+        upload_to='images/actores/',
+        default='images/actores/sin_foto.jpg'
     )
+
+    def image_admin(self):
+        return mark_safe("<img style='max-width:220px; max-height:300px' src=\"{}\" />".format(settings.MEDIA_URL+str(self.foto)))
+
+    image_admin.short_description = 'Foto actual'
 
     def __str__(self):
         return self.nombre
-    
+
     class Meta:
         verbose_name_plural = "Actores"
 
@@ -23,11 +33,20 @@ class Director(models.Model):
         max_length=100
     )
     fecha_nacimiento = models.DateField()
-    fecha_defuncion = models.DateField()
-    foto = models.ImageField(
-        upload_to = 'media/images/directores/',
-        default = 'media/images/directores/sin_foto.jpg'
+    fecha_defuncion = models.DateField(
+        'Fallecido',
+        null=True,
+        blank=True,
     )
+    foto = models.ImageField(
+        upload_to='images/directores/',
+        default='images/directores/sin_foto.jpg'
+    )
+
+    def image_admin(self):
+        return mark_safe("<img style='max-width:220px; max-height:300px' src=\"{}\" />".format(settings.MEDIA_URL+str(self.foto)))
+
+    image_admin.short_description = 'Foto actual'
 
     def __str__(self):
         return self.nombre
@@ -40,7 +59,7 @@ class Genero(models.Model):
 
     def __str__(self):
         return self.nombre
-    
+   
     class Meta:
         verbose_name_plural = "Géneros"
 
@@ -60,12 +79,12 @@ class Pelicula(models.Model):
         ("5", "5/5")
     )
     nota = models.IntegerField(
-        default=0,
+        default="3",
         choices=notas_posibles
     )
     caratula = models.ImageField(
-        upload_to='media/images/peliculas/',
-        default='media/images/peliculas/sin_caratula.jpg'
+        upload_to='images/peliculas/',
+        default='images/peliculas/sin_caratula.jpg'
     )
     genero = models.ManyToManyField(
         Genero,
@@ -80,8 +99,13 @@ class Pelicula(models.Model):
         on_delete=models.SET('Sin actor')
     )
 
+    def image_admin(self):
+        return mark_safe("<img style='max-width:220px; max-height:300px' src=\"{}\" />".format(settings.MEDIA_URL+str(self.caratula)))
+
+    image_admin.short_description = 'Carátula actual'
+
     def __str__(self):
-        return self.nombre
+        return self.titulo
 
     class Meta():
         verbose_name_plural = "Películas"
@@ -95,6 +119,6 @@ class Copia(models.Model):
 
     def __str__(self):
         return "(ID: {}) {}".format(self.id, self.pelicula.titulo)
-    
+  
     class Meta:
         verbose_name_plural = "Copias"
