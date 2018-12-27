@@ -6,32 +6,38 @@
 
 
 {% block header %}
-<!-- <header>
+<header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
+
         <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active" style="background-image: url('/media/images/fondos_peliculas/avengersinfinitywar.png')">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Los Vengadores: Infinity Wars</h3>
-                    <p>Ya disponible</p>
-                </div>
-            </div>
-            <div class="carousel-item" style="background-image: url('/media/images/fondos_peliculas/avengersendgame.jpg')">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Los Vengadores: Endgame</h3>
-                    <p>Próximamente</p>
-                </div>
-            </div>
-            <div class="carousel-item" style="background-image: url('/media/images/fondos_peliculas/spiderman.jpg')">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Spiderman: Far From Home</h3>
-                    <p>Fecha no disponible</p>
-                </div>
-            </div>
+
+            {% if object_list %}
+                {% for pelicula in object_list %}
+
+                    {% if forloop.first %}
+                    <div class="carousel-item active" style="background-image: url('{{pelicula.url_imagen_promocional}}')">
+                    {% else %}
+                    <div class="carousel-item" style="background-image: url('{{pelicula.url_imagen_promocional}}')">
+                    {% endif %}
+                    
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>{{pelicula.titulo}}</h3>
+                        <p>{{pelicula.fecha}}</p>
+                    </div>
+                    </div>
+
+                {% endfor %}
+            {% else %}
+
+            <h4>No hay ninguna película registrada</h4>
+
+            {% endif %}
+
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -42,90 +48,34 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-</header> -->
+</header>
 {% endblock header %}
 
 {% block content %}
 
 <hr>
 <h2>Últimas películas</h2>
-
 <div class="row">
-    <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-                <h4 class="card-title">
-                    <a href="#">Project One</a>
-                </h4>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
-                    aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt,
-                    dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+
+    {% if object_list %}
+        {% for pelicula in object_list %}
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <a href="#"><img class="card-img-top" src="{{pelicula.url_imagen_promocional}}" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">{{pelicula.titulo}}</a>
+                        </h4>
+                        <p class="card-text">{{pelicula.sinopsis}}</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-                <h4 class="card-title">
-                    <a href="#">Project Two</a>
-                </h4>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra
-                    euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-                <h4 class="card-title">
-                    <a href="#">Project Three</a>
-                </h4>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam,
-                    error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere
-                    atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-                <h4 class="card-title">
-                    <a href="#">Project Four</a>
-                </h4>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra
-                    euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-                <h4 class="card-title">
-                    <a href="#">Project Five</a>
-                </h4>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra
-                    euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-            <div class="card-body">
-                <h4 class="card-title">
-                    <a href="#">Project Six</a>
-                </h4>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum
-                    nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius
-                    in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-            </div>
-        </div>
-    </div>
+        {% endfor %}
+    {% else %}
+
+    <h4>No hay ninguna película registrada</h4>
+
+    {% endif %}
 </div>
 
 <hr>

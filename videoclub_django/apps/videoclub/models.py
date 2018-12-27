@@ -117,6 +117,9 @@ class Pelicula(models.Model):
 
     imagen_promocional_admin.short_description = 'Imágen promocional actual'
 
+    def url_imagen_promocional(self):
+        return settings.MEDIA_URL+str(self.imagen_promocional)
+
     def __str__(self):
         return self.titulo
 
