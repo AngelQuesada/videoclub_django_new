@@ -12,7 +12,7 @@ class DirectorAdmin(admin.ModelAdmin):
 admin.site.register(Director, DirectorAdmin)
 
 class PeliculaAdmin(admin.ModelAdmin):
-    readonly_fields = ['image_admin']
+    readonly_fields = ['caratula_admin','imagen_promocional_admin']
 
 admin.site.register(Pelicula, PeliculaAdmin)
 

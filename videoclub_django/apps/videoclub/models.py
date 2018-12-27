@@ -87,8 +87,12 @@ class Pelicula(models.Model):
         default="Sin sinopsis"
     )
     caratula = models.ImageField(
-        upload_to='images/peliculas/',
-        default='images/peliculas/sin_caratula.jpg'
+        upload_to='images/peliculas/caratulas',
+        default='images/peliculas/caratulas/sin_caratula.jpg'
+    )
+    imagen_promocional = models.ImageField(
+        upload_to='images/peliculas/imagenes_promocionales',
+        default='images/peliculas/imagenes_promocionales/sin_imagen.jpg'
     )
     genero = models.ManyToManyField(
         Genero,
@@ -103,10 +107,15 @@ class Pelicula(models.Model):
         on_delete=models.SET('Sin actor')
     )
 
-    def image_admin(self):
+    def caratula_admin(self):
         return mark_safe("<img style='max-width:220px; max-height:300px' src=\"{}\" />".format(settings.MEDIA_URL+str(self.caratula)))
 
-    image_admin.short_description = 'Carátula actual'
+    caratula_admin.short_description = 'Carátula actual'
+
+    def imagen_promocional_admin(self):
+        return mark_safe("<img style='max-width:220px; max-height:300px' src=\"{}\" />".format(settings.MEDIA_URL+str(self.imagen_promocional)))
+
+    imagen_promocional_admin.short_description = 'Imágen promocional actual'
 
     def __str__(self):
         return self.titulo
