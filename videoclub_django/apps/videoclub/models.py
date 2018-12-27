@@ -82,6 +82,10 @@ class Pelicula(models.Model):
         default="3",
         choices=notas_posibles
     )
+    sinopsis = models.TextField(
+        max_length=400,
+        default="Sin sinopsis"
+    )
     caratula = models.ImageField(
         upload_to='images/peliculas/',
         default='images/peliculas/sin_caratula.jpg'
