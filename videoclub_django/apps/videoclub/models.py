@@ -72,14 +72,14 @@ class Pelicula(models.Model):
     )
     fecha = models.DateField()
     notas_posibles = (
-        ("1", "1/5"),
-        ("2", "2/5"),
-        ("3", "3/5"),
-        ("4", "4/5"),
-        ("5", "5/5")
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5)
     )
     nota = models.IntegerField(
-        default="3",
+        default=3,
         choices=notas_posibles
     )
     sinopsis = models.TextField(
@@ -102,9 +102,9 @@ class Pelicula(models.Model):
         Director,
         on_delete=models.SET('Sin Director')
     ) 
-    actores = models.ForeignKey(
+    actores = models.ManyToManyField(
         Actor,
-        on_delete=models.SET('Sin actor')
+        blank=True
     )
 
     def caratula_admin(self):
