@@ -20,9 +20,9 @@
                 {% for pelicula in object_list %}
 
                     {% if forloop.first %}
-                    <div class="carousel-item active" style="background-image: url('{{pelicula.url_imagen_promocional}}')">
+                        <div class="carousel-item active" style="background-image: url('{{pelicula.url_imagen_promocional}}')">
                     {% else %}
-                    <div class="carousel-item" style="background-image: url('{{pelicula.url_imagen_promocional}}')">
+                        <div class="carousel-item" style="background-image: url('{{pelicula.url_imagen_promocional}}')">
                     {% endif %}
                     
                     <div class="carousel-caption d-none d-md-block">
@@ -30,24 +30,23 @@
                         <p>{{pelicula.fecha}}</p>
                     </div>
                     </div>
-
                 {% endfor %}
             {% else %}
-
+                
             <h4>No hay ninguna película registrada</h4>
 
             {% endif %}
 
+            
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
 </header>
 {% endblock header %}
 
@@ -63,10 +62,36 @@
                 <div class="card h-100">
                     <a href="#"><img class="card-img-top" src="{{pelicula.url_imagen_promocional}}" alt=""></a>
                     <div class="card-body">
-                        <h4 class="card-title">
+                        <h4 class="card-title text-center">
                             <a href="#">{{pelicula.titulo}}</a>
                         </h4>
-                        <p class="card-text">{{pelicula.sinopsis}}</p>
+                        <h6 class="card-subtitle mb-2 text-muted text-center">
+                            
+                            {% if pelicula.nota == 1 %}
+                                <i title="1" class="fas fa-star text-warning"></i>
+                            {% elif pelicula.nota == 2 %}
+                                <i title="2" class="fas fa-star text-warning"></i>
+                                <i title="2" class="fas fa-star text-warning"></i>
+                            {% elif pelicula.nota == 3 %}
+                                <i title="3" class="fas fa-star text-warning"></i>
+                                <i title="3" class="fas fa-star text-warning"></i>
+                                <i title="3" class="fas fa-star text-warning"></i>
+                            {% elif pelicula.nota == 4 %}
+                                <i title="4" class="fas fa-star text-warning"></i>
+                                <i title="4" class="fas fa-star text-warning"></i>
+                                <i title="4" class="fas fa-star text-warning"></i>
+                                <i title="4" class="fas fa-star text-warning"></i>
+                            {% elif pelicula.nota == 5 %}
+                                <i title="5" class="fas fa-star text-warning"></i>
+                                <i title="5" class="fas fa-star text-warning"></i>
+                                <i title="5" class="fas fa-star text-warning"></i>
+                                <i title="5" class="fas fa-star text-warning"></i>
+                                <i title="5" class="fas fa-star text-warning"></i>
+                            {% endif %}
+                                
+                        </h6>
+                        <p class="card-text">{{pelicula.sinopsis|slice:":200"}}</p>
+                        <a target='_blank' href='{{pelicula.url_trailer}}'><button class='btn btn-danger btn-block'>Ver trailer &nbsp &nbsp<i class="fab fa-youtube"></i></button></a>
                     </div>
                 </div>
             </div>
