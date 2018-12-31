@@ -10,6 +10,7 @@ django = "==2.1.4"
 autopep8 = "*"
 pillow = "*"
 django-cleanup = "*"
+django-debug-toolbar = "*"
 
 [requires]
 python_version = "3.6"
