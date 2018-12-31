@@ -8,6 +8,9 @@ from django.contrib.staticfiles.urls import static
 from apps.videoclub.views import *
 
 urlpatterns = [
-    path('', VideclubIndex.as_view(), name='index'),
+    path(
+        '',
+        VideoclubIndex.as_view(),
+        name='vista_index'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

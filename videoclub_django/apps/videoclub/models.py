@@ -22,6 +22,9 @@ class Actor(models.Model):
 
     image_admin.short_description = 'Foto actual'
 
+    def url_foto(self):
+        return settings.MEDIA_URL+str(self.foto)
+
     def __str__(self):
         return self.nombre
 
