@@ -41,6 +41,13 @@
     border-radius: 50%;
 }
 
+/* DIRECTORES INDEX */
+
+.directores_index .foto_director{
+    width:200px;
+    height:280px;
+}
+
 /* UTILIDADES */
 
 .no_text_decoration:hover{
