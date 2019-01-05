@@ -62,7 +62,7 @@
                     <a href="#"><img class="card-img-top" src="{{pelicula.url_imagen_promocional}}" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title text-center">
-                            <a href="#">{{pelicula.titulo}}</a>
+                            <a href="{% url 'pelicula' pelicula.id %}">{{pelicula.titulo}}</a>
                         </h4>
                         <h6 class="card-subtitle mb-2 text-muted text-center">
                             
@@ -172,4 +172,3 @@
 <hr>
 
 {% endblock content %}
-    

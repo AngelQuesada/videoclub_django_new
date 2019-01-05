@@ -48,6 +48,41 @@
     height:280px;
 }
 
+/* PELICULA DETALLE */
+
+.pelicula_detalle .caratula{
+    max-width:300px;
+}
+
+.ficha_pelicula{
+    box-shadow: 1px 1px 4px grey;
+    border-radius: 3px;
+}
+
+.ficha_pelicula .foto_actor{
+    max-width:50px;
+}
+
+.ficha_pelicula .foto_director{
+    max-width:90px;
+}
+
+.ficha_pelicula .trailer{
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+    
+.ficha_pelicula .trailer iframe,
+.ficha_pelicula .trailer object,
+.ficha_pelicula .trailer embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 /* UTILIDADES */
 
 .no_text_decoration:hover{
