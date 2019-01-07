@@ -16,7 +16,7 @@
         <div class="carousel-inner" role="listbox">
 
             {% if view.peliculas %}
-                {% for pelicula in view.peliculas %}
+                {% for pelicula in view.peliculas|slice:":3" %}
 
                     {% if forloop.first %}
                         <div class="carousel-item active" style="background-image: url('{{pelicula.url_imagen_promocional}}')">
@@ -29,6 +29,7 @@
                         <p>{{pelicula.fecha}}</p>
                     </div>
                     </div>
+                    
                 {% endfor %}
             {% else %}
                 

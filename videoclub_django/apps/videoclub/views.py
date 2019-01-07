@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView, DetailView, ListView
 
 from apps.videoclub.models import Pelicula, Director, Actor
 
@@ -23,3 +23,8 @@ class VideoclubIndex(TemplateView):
 class PeliculaDetailView(DetailView):
     model = Pelicula
     template_name = "videoclub/pelicula.html"
+
+
+class PeliculasList(ListView):
+    model = Pelicula
+    template_name = "videoclub/peliculas.html"

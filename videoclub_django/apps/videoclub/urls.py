@@ -15,5 +15,10 @@ urlpatterns = [
         'pelicula/<int:pk>/',
         PeliculaDetailView.as_view(),
         name='pelicula'
+    ),
+    path(
+        'peliculas/',
+        PeliculasList.as_view(),
+        name='peliculas'
     )
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
