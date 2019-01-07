@@ -51,21 +51,30 @@
             <li>{{pelicula.fecha}}</li>
             <li class="mt-2">{{pelicula.sinopsis}}</li>
         </ul>
-            <hr>
             <h4>Director:</h4>
             <a href='#' title='{{pelicula.director.nombre}}'>
-                <div class="row">
-                    <div class="col-md-12">
+                <div class="row director m-3 p-2">
+                    <!-- Dispositivos pequeños -->
+                    <div class="d-lg-none d-md-none col-sm-12 text-center">
                         <img class='foto_director' src="{{ pelicula.director.url_foto }}" alt="{{ pelicula.director.nombre }}">
+                    </div>
+                    <div class="d-lg-none d-md-none col-lg-12 text-center">
+                        <h3 class="align-self-center">{{ pelicula.director.nombre }}</h3>
+                    </div>
+                    <!-- dispositivos grandes -->
+                    <div class="d-xs-none d-sm-none d-md-block d-lg-block col-lg-1 col-md-2">
+                        <img class='foto_director' src="{{ pelicula.director.url_foto }}" alt="{{ pelicula.director.nombre }}">
+                    </div>
+                    <div class="d-xs-none d-sm-none d-md-block d-lg-block col-lg-11 col-md-10 align-middle pl-5">
+                        <h2 class="align-self-center">{{ pelicula.director.nombre }}</h2>
                     </div>
                 </div>
             </a>
-            <hr>
             <h4>Reparto:</h4>
             {% for actor in pelicula.actores.all %}
-                <a href='#' class='no_text_decoration' title='{{actor.nombre}}'>
-                    <img class='foto_actor' src="{{ actor.url_foto }}" alt="{{ actor.nombre }}">
-                </a>
+            <a href='#' class='no_text_decoration' title='{{actor.nombre}}'>
+                <img class='foto_actor' src="{{ actor.url_foto }}" alt="{{ actor.nombre }}">
+            </a>
             {% endfor %}
             
             {% if pelicula.url_trailer %}

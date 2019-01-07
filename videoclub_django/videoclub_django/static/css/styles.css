@@ -67,6 +67,11 @@
     max-width: 50px;
 }
 
+.ficha_pelicula .row.director{
+    box-shadow: 1px 1px 4px grey;
+    border-radius: 3px;
+}
+
 .ficha_pelicula .foto_director {
     max-width: 90px;
 }
