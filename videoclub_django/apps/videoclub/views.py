@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import TemplateView, DetailView, ListView
+from django.contrib.auth.decorators import login_required
 
 from apps.videoclub.models import Pelicula, Director, Actor
 
 # Create your views here.
-
 
 class VideoclubIndex(TemplateView):
     template_name = "videoclub/index.html"

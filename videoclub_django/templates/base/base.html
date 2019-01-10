@@ -49,11 +49,11 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                            Sesión
+                            {{ user.get_username }}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                             <a class="dropdown-item" href="#">Editar Perfil</a>
-                            <a class="dropdown-item" href="#">Salir</a>
+                            <a class="dropdown-item" href="{% url 'logout' %}">Salir</a>
                         </div>
                     </li>
                 </ul>

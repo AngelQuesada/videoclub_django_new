@@ -36,8 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar', #Debug Toolbar
+    'debug_toolbar', #Debug toolbar
     'apps.videoclub',
+    'apps.accounts',
     'django_cleanup', # Esta app borrará los archivos multimedia cuando no los estés utilizando
 ]
 
@@ -148,3 +149,6 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 INTERNAL_IPS = ('127.0.0.1', '192.168.0.1',)
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'login'
