@@ -283,17 +283,14 @@
     text-decoration: none;
 }
 
+/* FORMULARIO  */
+
+.formulario .caja_formulario {
+    box-shadow: 0 1px 10px rgba(102, 102, 102, .57);
+    border-radius: 3px;
+}
+
 /* PANTALLA REGISTRO */
-
-.formulario_registro .caja_formulario{
-    box-shadow: 0 1px 10px rgba(102,102,102,.57);
-    border-radius:3px;
-    /* background:yellow; */
-}
-
-.formulario_registro .caja_formulario h4{
-
-}
 
 /* UTILIDADES */
 

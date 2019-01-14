@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
 
 
 class RegistroForm(UserCreationForm):
@@ -37,4 +37,19 @@ class RegistroForm(UserCreationForm):
         self.fields['password1'].widget = forms.PasswordInput(
             attrs={'class': 'form-control', 'placeholder': 'Introduce tu contraseña'})
         self.fields['password2'].widget = forms.PasswordInput(
+            attrs={'class': 'form-control', 'placeholder': 'Confirma tu contraseña'})
+
+class PasswordReinicioForm(PasswordResetForm):
+
+    class Meta:
+        fields = (
+            "new_password",
+            "new_password2",
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(PasswordReinicioForm, self).__init__(*args, **kwargs)
+        self.fields['new_password1'].widget = forms.PasswordInput(
+            attrs={'class': 'form-control', 'placeholder': 'Introduce tu contraseña'})
+        self.fields['new_password2'].widget = forms.PasswordInput(
             attrs={'class': 'form-control', 'placeholder': 'Confirma tu contraseña'})
