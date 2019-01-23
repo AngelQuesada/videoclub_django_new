@@ -24,6 +24,9 @@ class PeliculaDetailView(DetailView):
     model = Pelicula
     template_name = "videoclub/pelicula.html"
 
+class DirectorDetailView(DetailView):
+    model = Director
+    template_name = "videoclub/director.html"
 
 class PeliculasList(ListView):
     model = Pelicula

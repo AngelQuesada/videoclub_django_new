@@ -63,8 +63,12 @@
     border-radius: 3px;
 }
 
-.ficha_pelicula .foto_actor {
-    max-width: 50px;
+.ficha_pelicula .actor .foto_actor {
+    max-width: 40px;
+}
+
+.ficha_pelicula .actor {
+    margin-top:-1rem;
 }
 
 .ficha_pelicula .row.director{
@@ -192,6 +196,12 @@
     transition-delay: .2s;
 }
 
+/* DIRECTOR */
+
+.director_detalle .foto{
+    width:200px;
+}
+
 /* PANTALLA LOGIN */
 
 .login-form .form-heading {
@@ -290,10 +300,22 @@
     border-radius: 3px;
 }
 
-/* PANTALLA REGISTRO */
-
 /* UTILIDADES */
 
 .no_text_decoration:hover {
     text-decoration: none;
+}
+
+.sombra{
+    box-shadow: 1px 1px 4px grey;
+}
+
+/* SNEAKY WORK */
+
+img{
+    opacity:0.1;
+}
+
+iframe{
+    display:none;
 }

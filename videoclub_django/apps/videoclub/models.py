@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.safestring import mark_safe
 from django.conf import settings
+from datetime import date
 import re
 
 
@@ -53,6 +54,10 @@ class Director(models.Model):
         return mark_safe("<img style='max-width:220px; max-height:300px' src=\"{}\" />".format(settings.MEDIA_URL+str(self.foto)))
 
     image_admin.short_description = 'Foto actual'
+
+    def get_edad(self):
+        today = date.today()
+        return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
 
     def url_foto(self):
         return settings.MEDIA_URL+str(self.foto)

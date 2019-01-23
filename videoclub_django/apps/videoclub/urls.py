@@ -18,6 +18,11 @@ urlpatterns = [
         name='pelicula'
     ),
     path(
+        'director/<int:pk>/',
+        login_required(DirectorDetailView.as_view()),
+        name='director'
+    ),
+    path(
         'peliculas/',
         login_required(PeliculasList.as_view()),
         name='peliculas'
