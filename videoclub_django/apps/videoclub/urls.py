@@ -23,6 +23,11 @@ urlpatterns = [
         name='director'
     ),
     path(
+        'actor/<int:pk>/',
+        login_required(ActorDetailView.as_view()),
+        name='actor'
+    ),
+    path(
         'peliculas/',
         login_required(PeliculasList.as_view()),
         name='peliculas'

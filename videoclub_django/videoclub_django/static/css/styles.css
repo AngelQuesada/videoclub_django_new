@@ -202,6 +202,12 @@
     width:200px;
 }
 
+/* ACTOR */
+
+.actor_detalle .foto{
+    width:200px;
+}
+
 /* PANTALLA LOGIN */
 
 .login-form .form-heading {

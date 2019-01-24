@@ -28,6 +28,10 @@ class DirectorDetailView(DetailView):
     model = Director
     template_name = "videoclub/director.html"
 
+class ActorDetailView(DetailView):
+    model = Actor
+    template_name = "videoclub/actor.html"
+
 class PeliculasList(ListView):
     model = Pelicula
     template_name = "videoclub/peliculas.html"

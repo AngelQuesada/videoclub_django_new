@@ -28,6 +28,10 @@ class Actor(models.Model):
     def url_foto(self):
         return settings.MEDIA_URL+str(self.foto)
 
+    def get_edad(self):
+        today = date.today()
+        return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
+
     def __str__(self):
         return self.nombre
 

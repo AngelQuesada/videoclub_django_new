@@ -72,7 +72,7 @@
             </a>
             <h4>Reparto:</h4>
             {% for actor in pelicula.actores.all %}
-            <a href='#' class='no_text_decoration' title='{{actor.nombre}}'>
+            <a href="{% url 'actor' actor.id %}" class='no_text_decoration' title='{{actor.nombre}}'>
                 <div class="row actores m-3 p-2 pt-1">
                     <div class="p-1 sombra actor col-lg-12">
                         <img class='foto_actor float-left' src="{{ actor.url_foto }}" alt="{{ actor.nombre }}">
