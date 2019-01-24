@@ -35,3 +35,7 @@ class ActorDetailView(DetailView):
 class PeliculasList(ListView):
     model = Pelicula
     template_name = "videoclub/peliculas.html"
+
+class DirectoresList(ListView):
+    model = Director
+    template_name = "videoclub/directores.html"
