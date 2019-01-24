@@ -36,5 +36,10 @@ urlpatterns = [
         'directores/',
         login_required(DirectoresList.as_view()),
         name='directores'
+    ),
+    path(
+        'actores/',
+        login_required(ActoresList.as_view()),
+        name='actores'
     )
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

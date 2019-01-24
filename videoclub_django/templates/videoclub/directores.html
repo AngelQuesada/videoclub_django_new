@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
 {% block title %}
-Videoclub: Películas
+Videoclub: Directores
 {% endblock title %}
 
 {% block content %}
@@ -13,12 +13,13 @@ Videoclub: Películas
     {% for director in object_list %}
 
     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
-        <div class="hovereffect">
+        <div class="hovereffect director">
             <img class="img-responsive mt-1" src="{{director.url_foto}}" alt="">
             <div class="overlay">
                 <h2>{{director.nombre}}</h2>
                 <a class="info" href="{% url 'director' director.id %}">Ver ficha</a>
             </div>
+            <div class='numero_peliculas'>{{director.get_num_peliculas}} películas</div>
         </div>
     </div>
 

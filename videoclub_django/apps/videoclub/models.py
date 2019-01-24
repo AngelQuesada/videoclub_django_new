@@ -32,12 +32,15 @@ class Actor(models.Model):
         today = date.today()
         return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
 
+    def get_num_peliculas(self):
+        n_peliculas = self.pelicula_set.count()
+        return n_peliculas
+
     def __str__(self):
         return self.nombre
 
     class Meta:
         verbose_name_plural = "Actores"
-
 
 class Director(models.Model):
     nombre = models.CharField(
@@ -66,12 +69,15 @@ class Director(models.Model):
     def url_foto(self):
         return settings.MEDIA_URL+str(self.foto)
 
+    def get_num_peliculas(self):
+        n_peliculas = self.pelicula_set.count()
+        return n_peliculas
+
     def __str__(self):
         return self.nombre
 
     class Meta:
         verbose_name_plural = "Directores"
-
 
 class Genero(models.Model):
     nombre = models.CharField(max_length=50)
@@ -81,7 +87,6 @@ class Genero(models.Model):
 
     class Meta:
         verbose_name_plural = "Géneros"
-
 
 class Pelicula(models.Model):
     titulo = models.CharField(
@@ -176,7 +181,6 @@ class Pelicula(models.Model):
 
     class Meta():
         verbose_name_plural = "Películas"
-
 
 class Copia(models.Model):
     fecha_llegada = models.DateField()

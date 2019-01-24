@@ -19,7 +19,6 @@ class VideoclubIndex(TemplateView):
     def actores(self):
         return Actor.objects.all().order_by('-id')[:6]
 
-
 class PeliculaDetailView(DetailView):
     model = Pelicula
     template_name = "videoclub/pelicula.html"
@@ -39,3 +38,7 @@ class PeliculasList(ListView):
 class DirectoresList(ListView):
     model = Director
     template_name = "videoclub/directores.html"
+
+class ActoresList(ListView):
+    model = Actor
+    template_name = "videoclub/actores.html"
