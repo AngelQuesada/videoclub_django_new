@@ -52,7 +52,7 @@
             <li class="mt-2">{{pelicula.sinopsis}}</li>
         </ul>
             <h4>Director:</h4>
-            <a href="{% url 'director' pelicula.director.id %}" title='{{pelicula.director.nombre}}'>
+            <a class ='no_text_decoration' href="{% url 'director' pelicula.director.id %}" title='{{pelicula.director.nombre}}'>
                 <div class="row director m-3 p-2">
                     <!-- Dispositivos pequeños -->
                     <div class="d-lg-none d-md-none col-sm-12 text-center">
@@ -71,16 +71,16 @@
                 </div>
             </a>
             <h4>Reparto:</h4>
+            <div class="row actores m-3 p-2 pt-1 pb-4">
             {% for actor in pelicula.actores.all %}
-            <a href="{% url 'actor' actor.id %}" class='no_text_decoration' title='{{actor.nombre}}'>
-                <div class="row actores m-3 p-2 pt-1">
-                    <div class="p-1 sombra actor col-lg-12">
-                        <img class='foto_actor float-left' src="{{ actor.url_foto }}" alt="{{ actor.nombre }}">
-                        <h4 class="float-left ml-4">{{ actor.nombre }}</h4>
-                    </div>
-                </div>
-            </a>
+            <div class="p-1 sombra actor col-lg-12">
+                <a href="{% url 'actor' actor.id %}" class='no_text_decoration' title='{{actor.nombre}}'>
+                    <img class='foto_actor float-left' src="{{ actor.url_foto }}" alt="{{ actor.nombre }}">
+                    <h4 class="float-left ml-4">{{ actor.nombre }}</h4>
+                </a>
+            </div>
             {% endfor %}
+            </div>
             
             {% if pelicula.url_trailer %}
                 <hr>

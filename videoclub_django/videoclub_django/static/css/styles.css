@@ -68,12 +68,20 @@
 }
 
 .ficha_pelicula .actor {
-    margin-top:-1rem;
+    margin-top:.5rem;
 }
 
 .ficha_pelicula .row.director{
     box-shadow: 1px 1px 4px grey;
     border-radius: 3px;
+}
+
+.ficha_pelicula .row.director h2{
+    color:#666666;
+}
+
+.ficha_pelicula .row.actores h4 {
+    color: #666666;
 }
 
 .ficha_pelicula .foto_director {
@@ -305,8 +313,7 @@
 
 /* DIRECTORES */
 
-.actores {
-    box-shadow: 1px 1px 4px grey;
+.ficha_pelicula .row.actores {
     border-radius: 3px;
 }
 
