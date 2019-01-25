@@ -1,3 +1,9 @@
+/* HEADER */
+
+header{
+    margin-bottom: 2rem;
+}
+
 /* PELICULAS INDEX */
 
 .peliculas_index .card-img-top{
@@ -533,6 +539,26 @@
     border-radius: 3px;
 }
 
+/* BREADCRUMBS */
+
+nav[aria-label=breadcrumb] {
+    margin-top: 1rem;
+    float:left;
+}
+
+.breadcrumb{
+    background:rgba(52, 58, 64, 0.726);
+}
+
+.breadcrumb a{
+    color:white;
+    font-weight:bold;
+}
+
+.breadcrumb .breadcrumb-item.active {
+    color:rgba(255, 255, 255, 0.61);
+}
+
 /* UTILIDADES */
 
 .no_text_decoration:hover {
@@ -546,7 +572,7 @@
 /* SNEAKY WORK */
 
 img{
-    opacity:0.1;
+    opacity:0.05;
 }
 
 iframe{
@@ -554,5 +580,5 @@ iframe{
 }
 
 header{
-    opacity:0.1;
+    opacity:0.05
 }

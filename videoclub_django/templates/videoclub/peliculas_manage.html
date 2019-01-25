@@ -1,13 +1,23 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
+{% load django_bootstrap_breadcrumbs %}
 {% block title %}
-Manage Películas
+Administrar Películas
 {% endblock title %}
-
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Películas" "peliculas" %}
+    {% breadcrumb "Administrar películas" "manage_peliculas" %}
+{% endblock breadcrumbs %}
 {% block content %}
 
+
 <div class="row mt-4">
-    <h3>Administración</h3>
+    
+    <div class="row">
+        {% render_breadcrumbs "django_bootstrap_breadcrumbs/bootstrap4.html"%}
+    </div>
+
     <hr class="w-100">
     <h4 class="w-100">Opciones</h4>
     <div class="mb-3 mt-3 botones">

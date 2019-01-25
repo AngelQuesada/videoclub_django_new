@@ -1,12 +1,24 @@
 {% extends 'base/base.html' %}
+{% load django_bootstrap_breadcrumbs %}
 {% load staticfiles %}
+
 {% block title %}
 Videoclub: actores
 {% endblock title %}
 
+{% block breadcrumbs %}
+{{ block.super }}
+{% breadcrumb "Actores" "actores" %}
+{% endblock breadcrumbs %}
+
 {% block content %}
 
+<div class="row">
+    {% render_breadcrumbs "django_bootstrap_breadcrumbs/bootstrap4.html"%}
+</div>
+
 <div class="row actores mt-3 mb-3 pt-3 pb-3">
+
 
     {% if object_list %}
 

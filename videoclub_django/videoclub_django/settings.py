@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'debug_toolbar', #Debug toolbar
     'apps.videoclub',
     'apps.accounts',
+    'django_bootstrap_breadcrumbs',
     'django_cleanup', # Esta app borrará los archivos multimedia cuando no los estés utilizando
 ]
 

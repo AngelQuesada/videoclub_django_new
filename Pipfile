@@ -11,6 +11,8 @@ pillow = "*"
 pylint = "*"
 autopep8 = "*"
 pylint-django = "*"
+django-bootstrap-breadcrumbs = "*"
+django-view-breadcrumbs = "*"
 
 [dev-packages]
 

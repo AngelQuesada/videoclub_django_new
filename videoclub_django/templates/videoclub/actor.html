@@ -1,10 +1,22 @@
 {% extends 'base/base.html' %}
+{% load django_bootstrap_breadcrumbs %}
 {% load staticfiles %}
+
 {% block title %}
 Actor: {{actor.nombre}}
 {% endblock title %}
 
+{% block breadcrumbs %}
+{{ block.super }}
+{% breadcrumb "Actores" "actores" %}
+{% breadcrumb actor.nombre actor.id %}
+{% endblock breadcrumbs %}
+
 {% block content %}
+
+<div class="row">
+    {% render_breadcrumbs "django_bootstrap_breadcrumbs/bootstrap4.html"%}
+</div>
 
 <div class="row actor_detalle">
 

@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
+{% load django_bootstrap_breadcrumbs %}
 {% block title %}
     Videoclub: Películas
 {% endblock title %}
@@ -23,7 +24,16 @@
 </header>
 {% endblock header %}
 
+{% block breadcrumbs %}
+{{ block.super }}
+    {% breadcrumb "Películas" "peliculas" %}
+{% endblock breadcrumbs %}
+
 {% block content %}
+
+<div class="row">
+    {% render_breadcrumbs "django_bootstrap_breadcrumbs/bootstrap4.html"%}
+</div>
 
 <div class="row peliculas mt-3 mb-3 pt-3 pb-3">
     
