@@ -4,6 +4,25 @@
     Videoclub: Películas
 {% endblock title %}
 
+{% block header %}
+<header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+        <div class="carousel-inner" role="listbox">
+
+            <div class="carousel-item active" style="background-image: url({% static 'images/background_peliculas.jpg' %})">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class='mb-5'>Películas</h2>
+                    <a name="" id="" class="btn btn-primary" href="{% url 'peliculas_manage' %}" role="button">Editar Películas</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</header>
+{% endblock header %}
+
 {% block content %}
 
 <div class="row peliculas mt-3 mb-3 pt-3 pb-3">

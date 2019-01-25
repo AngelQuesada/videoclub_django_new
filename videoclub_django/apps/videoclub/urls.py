@@ -10,7 +10,7 @@ urlpatterns = [
     path(
         '',
         login_required(VideoclubIndex.as_view()),
-        name='vista_index'
+        name='index'
     ),
     path(
         'pelicula/<int:pk>/',
@@ -41,5 +41,15 @@ urlpatterns = [
         'actores/',
         login_required(ActoresList.as_view()),
         name='actores'
-    )
+    ),
+    path(
+        'forbidden/',
+        login_required(Forbidden.as_view()),
+        name='forbidden'
+    ),
+    path(
+        'peliculas/manage/',
+        PeliculasManage.as_view(),
+        name='peliculas_manage'
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

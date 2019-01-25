@@ -429,6 +429,12 @@
     width:200px;
 }
 
+/* ADMINISTRACION PELICULAS */
+
+.administracion_peliculas .tabla_peliculas img.caratula{
+    width: 30px;
+}
+
 /* PANTALLA LOGIN */
 
 .login-form .form-heading {
@@ -545,4 +551,8 @@ img{
 
 iframe{
     display:none;
+}
+
+header{
+    opacity:0.1;
 }
