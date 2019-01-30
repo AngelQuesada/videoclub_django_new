@@ -1,19 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, DetailView, ListView
+from django.views.generic import TemplateView, DetailView, ListView, UpdateView
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
+from apps.videoclub.forms import *
 
 from apps.videoclub.models import Pelicula, Director, Actor
+
+# Mis decoradores
 
 staff = [
     login_required,
     staff_member_required(login_url='forbidden')
 ]
-
-# Create your views here.
 
 class VideoclubIndex(TemplateView):
     template_name = "videoclub/index.html"
@@ -58,7 +59,12 @@ class PeliculasManage(ListView):
     model = Pelicula
     template_name = "videoclub/peliculas_manage.html"
 
-    # @user_passes_test(pantalla_edicion)
     @method_decorator(staff)
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
+
+class PeliculasEdit(UpdateView):
+    model = Pelicula
+    form_class = PeliculaForm
+    template_name = "videoclub/peliculas_edit.html"
+    success_url = reverse_lazy('peliculas_manage')

@@ -53,7 +53,7 @@ Administrar Películas
                 <td>?</td>
                 <td>
                     <a alt="" title="Ver película" href=""><i class="text-primary ml-1 fas fa-file"></i></a> 
-                    <a alt="" title="Editar película" href=""><i class="text-warning ml-1 fas fa-pencil-alt"></i></a> 
+                    <a alt="" title="Editar película" href="{% url 'peliculas_edit' pelicula.id %}"><i class="text-warning ml-1 fas fa-pencil-alt"></i></a> 
                     <a alt="" title="Eliminar película" href=""><i class="text-danger ml-1 fas fa-times-circle"></i></a> 
                     <a alt="" title="Añadir copia de película" href=""><i class="text-success ml-1 fas fa-plus-circle"></i></a>
                 </td>
