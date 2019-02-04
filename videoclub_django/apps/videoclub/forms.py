@@ -43,8 +43,8 @@ class PeliculaForm(forms.ModelForm):
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control'}),
             'url_trailer': forms.TextInput(attrs={'class': 'form-control'}),
-            'fecha': forms.SelectDateWidget(attrs={'class': 'form-control'}),
-            'nota': forms.Select(attrs={'class': 'form-control'}, choices=notas_posibles),
+            'fecha': forms.SelectDateWidget(years=range(1900,2025)),
+            'nota': forms.Select(attrs={'class': 'form-control'}, choices=notas_posibles), 
             'sinopsis': forms.Textarea(attrs={'class': 'form-control'}),
             'genero': forms.SelectMultiple(attrs={'class': 'form-control'}),
             'director': forms.Select(attrs={'class': 'form-control'}),

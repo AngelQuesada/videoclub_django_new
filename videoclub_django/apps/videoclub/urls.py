@@ -57,4 +57,14 @@ urlpatterns = [
         PeliculasEdit.as_view(),
         name='peliculas_edit'
     ),
+    path(
+        'peliculas/manage/delete/<int:pk>/',
+        PeliculasDelete.as_view(),
+        name='peliculas_delete'
+    ),
+    path(
+        'peliculas/manage/create',
+        PeliculasCreate.as_view(),
+        name='peliculas_create'
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

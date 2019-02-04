@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, DetailView, ListView, UpdateView
+from django.views.generic import TemplateView, DetailView, ListView, UpdateView, CreateView, DeleteView
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
@@ -67,4 +67,15 @@ class PeliculasEdit(UpdateView):
     model = Pelicula
     form_class = PeliculaForm
     template_name = "videoclub/peliculas_edit.html"
+    success_url = reverse_lazy('peliculas_manage')
+
+class PeliculasDelete(DeleteView):
+    model = Pelicula
+    template_name = "videoclub/peliculas_delete.html"
+    success_url = reverse_lazy('peliculas_manage')
+
+class PeliculasCreate(CreateView):
+    model = Pelicula
+    form_class = PeliculaForm
+    template_name = "videoclub/peliculas_create.html"
     success_url = reverse_lazy('peliculas_manage')
