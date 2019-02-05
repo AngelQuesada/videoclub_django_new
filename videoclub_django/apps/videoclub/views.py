@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.urls import reverse_lazy
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import TemplateView, DetailView, ListView, UpdateView, CreateView, DeleteView
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
@@ -63,11 +64,16 @@ class PeliculasManage(ListView):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
-class PeliculasEdit(UpdateView):
+class PeliculasEdit(SuccessMessageMixin, UpdateView):
     model = Pelicula
     form_class = PeliculaForm
     template_name = "videoclub/peliculas_edit.html"
     success_url = reverse_lazy('peliculas_manage')
+
+    def get_success_message(self, cleaned_data):
+        # return super().get_success_message(cleaned_data)
+        print(cleaned_data)
+        return("La película se ha editado correctamente")
 
 class PeliculasDelete(DeleteView):
     model = Pelicula

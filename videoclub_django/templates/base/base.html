@@ -26,6 +26,26 @@
 
 <body>
 
+    {% if messages %}
+        
+        <div class="alert alert-info" role="alert">
+            {% for message in messages %}
+                <strong>{{ message }}</strong><br>
+            {% endfor %}
+        </div>
+        
+        <script>
+            setTimeout(()=>{
+                document.getElementsByClassName('alert')[0].classList.add('ocultar_mensaje');
+            }, 3000)
+            setTimeout(()=>{
+                document.getElementsByClassName('alert')[0].classList.add('ocultar_mensaje');
+            }, 3000)
+        </script>
+            
+    {% endif %}
+        
+
     
     {% block navbar %}
         
