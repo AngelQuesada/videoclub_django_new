@@ -2,12 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 from django.views.generic import TemplateView, DetailView, ListView, UpdateView, CreateView, DeleteView
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from apps.videoclub.forms import *
-
 from apps.videoclub.models import Pelicula, Director, Actor
 
 # Mis decoradores
@@ -71,17 +71,26 @@ class PeliculasEdit(SuccessMessageMixin, UpdateView):
     success_url = reverse_lazy('peliculas_manage')
 
     def get_success_message(self, cleaned_data):
-        # return super().get_success_message(cleaned_data)
-        print(cleaned_data)
-        return("La película se ha editado correctamente")
+        return("La película "+cleaned_data.get('titulo')+" se ha editado correctamente")
 
 class PeliculasDelete(DeleteView):
     model = Pelicula
     template_name = "videoclub/peliculas_delete.html"
     success_url = reverse_lazy('peliculas_manage')
+    success_message = "La siguiente película se ha eliminado correctamente"
 
-class PeliculasCreate(CreateView):
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message, extra_tags='success, delete')
+        return super(PeliculasDelete, self).delete(request, *args, **kwargs)
+
+
+class PeliculasCreate(SuccessMessageMixin, CreateView):
     model = Pelicula
     form_class = PeliculaForm
     template_name = "videoclub/peliculas_create.html"
     success_url = reverse_lazy('peliculas_manage')
+
+    success_message = "Se creó correctamente"
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message

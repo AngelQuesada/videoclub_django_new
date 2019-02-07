@@ -13,10 +13,12 @@
     <title>{% block title %}Videclub{% endblock title %}</title>
     <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}" />
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+        crossorigin="anonymous">
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{% static 'css/modern-business.css' %}">
@@ -27,28 +29,57 @@
 <body>
 
     {% if messages %}
-        
-        <div class="alert alert-info" role="alert">
-            {% for message in messages %}
-                <strong>{{ message }}</strong><br>
-            {% endfor %}
-        </div>
-        
-        <script>
-            setTimeout(()=>{
-                document.getElementsByClassName('alert')[0].classList.add('ocultar_mensaje');
-            }, 3000)
-            setTimeout(()=>{
-                document.getElementsByClassName('alert')[0].classList.add('ocultar_mensaje');
-            }, 3000)
-        </script>
-            
-    {% endif %}
-        
+        {% for message in messages %}
 
-    
+            <div class="mr-3 toast show" data-autohide="false" aria-live="assertive" aria-atomic="true" role="alert" style="position: fixed; bottom: 0; right: 0;">
+                <div class="toast-header">
+
+                    {%if "success" in message.tags %}
+                        <div style="width:25px;height:25px" class="rounded mr-2 bg-success" alt=""></div>
+                    {%endif%}
+
+                    {%if "add" in message.tags %}
+                        <strong class="mr-auto text-success">Añadido correctamente</strong>
+                    {% elif "delete" in message.tags%}
+                        <strong class="mr-auto text-success">Eliminado correctamente</strong>
+                    {% elif "edit" in message.tags%}
+                        <strong class="mr-auto text-success">Editado correctamente</strong>
+                    {%endif%}
+                    
+                    <small>Ahora</small>
+                    <button type="button" class="btn-cerrar-toast ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    <p>{{message}}</p>
+                </div>
+            </div>
+
+        {% endfor %}
+
+        <script type="text/javascript">
+
+            function cerrar_toast(){
+
+            }
+
+            var toasts = document.getElementsByClassName('toast');
+
+            for (let index = 0; index < toasts.length; index++) {
+                const elemento = toasts[index];
+                setTimeout(() => {
+                    elemento.classList.remove('show');
+                    elemento.classList.add('fade');
+                }, 5000)
+            }
+        </script>
+
+    {% endif %}
+
+
     {% block navbar %}
-        
+
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{% url 'index' %}">Videoclub - Django</a>
@@ -86,7 +117,7 @@
     </nav>
 
     {% endblock navbar %}
-    
+
     {% block header %}
 
     {% endblock header %}
@@ -94,31 +125,33 @@
     <div class="container">
 
         {% block breadcrumbs %}
-            {% clear_breadcrumbs %}  
-            {% breadcrumb "Inicio" "index" %}
+        {% clear_breadcrumbs %}
+        {% breadcrumb "Inicio" "index" %}
         {% endblock breadcrumbs %}
 
         {% block content %}
-            
+
         {% endblock content %}
-    
+
     </div>
-    
-    
+
     {% block footer %}
-        
+
     <footer class="py-5 bg-dark">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; Angel Quesada 2019</p>
         </div>
     </footer>
-    
+
     {% endblock footer %}
 
     <!-- Bootstrap core JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
 
 </body>
 

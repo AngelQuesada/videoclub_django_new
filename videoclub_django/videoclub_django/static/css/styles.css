@@ -561,14 +561,12 @@ nav[aria-label=breadcrumb] {
 
 /* MENSAJES */
 
-.alert{
-    position:absolute;
-    width:100%;
+.toast{
+    animation: all 1s ease-in;
 }
 
-.alert.ocultar_mensaje{
-    transition: all 1s ease-in-out;
-    opacity:0;
+.toast.mostrar{
+    opacity:1;
 }
 
 /* UTILIDADES */
