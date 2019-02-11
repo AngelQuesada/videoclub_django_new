@@ -60,19 +60,23 @@
 
         <script type="text/javascript">
 
-            function cerrar_toast(){
-
-            }
-
             var toasts = document.getElementsByClassName('toast');
 
             for (let index = 0; index < toasts.length; index++) {
                 const elemento = toasts[index];
-                setTimeout(() => {
+                elemento.getElementsByClassName('btn-cerrar-toast')[0].addEventListener("click", ()=>{
+                    alert('SI');
                     elemento.classList.remove('show');
                     elemento.classList.add('fade');
+                })
+                setTimeout(() => {
+                    if(elemento.classList.contains('show')){
+                        elemento.classList.remove('show');
+                        elemento.classList.add('fade');
+                    }
                 }, 5000)
             }
+
         </script>
 
     {% endif %}
