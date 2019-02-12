@@ -19,6 +19,9 @@ staff = [
 ]
 
 class VideoclubIndex(TemplateView):
+    """
+    CBV del index del vídeoclub
+    """
     template_name = "videoclub/index.html"
 
     def peliculas(self):
@@ -31,30 +34,52 @@ class VideoclubIndex(TemplateView):
         return Actor.objects.all().order_by('-id')[:6]
 
 class PeliculaDetailView(DetailView):
+    """
+    CBV de los detalles de una película
+    """
     model = Pelicula
     template_name = "videoclub/pelicula.html"
 
 class DirectorDetailView(DetailView):
+    """
+    CBV de los detalle del director
+    """
     model = Director
     template_name = "videoclub/director.html"
 
 class ActorDetailView(DetailView):
+    """
+    CBV de los detalles del actor
+    """
     model = Actor
     template_name = "videoclub/actor.html"
 
 class PeliculasList(ListView):
+    """
+    CBV de la lista de películas
+    """
     model = Pelicula
     template_name = "videoclub/peliculas.html"
 
 class DirectoresList(ListView):
+    """
+    CBV de la lista de directores
+    """
     model = Director
     template_name = "videoclub/directores.html"
 
 class ActoresList(ListView):
+    """
+    CBV de la lista de actores
+    """
     model = Actor
     template_name = "videoclub/actores.html"
 
 class Forbidden(TemplateView):
+    """
+    CBV de una página que muestra un mensaje
+    indicando que el acceso está prohibido
+    """
     template_name = "videoclub/forbidden.html"
 
 class PeliculasManage(ListView):
