@@ -35,7 +35,9 @@
                 <div class="toast-header">
 
                     {%if "success" in message.tags %}
-                        <div style="width:25px;height:25px" class="rounded mr-2 bg-success" alt=""></div>
+                        <div style="width:25px;height:25px" class="rounded mr-2 text-center bg-success" alt="">
+                            <i class="fas fa-thumbs-up text-white"></i>
+                        </div>
                     {%endif%}
 
                     {%if "add" in message.tags %}
