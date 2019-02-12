@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
+from django.template.loader import render_to_string
 from django.contrib import messages
 from django.views.generic import TemplateView, DetailView, ListView, UpdateView, CreateView, DeleteView
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -68,10 +69,19 @@ class PeliculasEdit(SuccessMessageMixin, UpdateView):
     model = Pelicula
     form_class = PeliculaForm
     template_name = "videoclub/peliculas_edit.html"
-    success_url = reverse_lazy('peliculas_manage')
+    success_url = reverse_lazy('peliculas_manage')  
 
-    def get_success_message(self, cleaned_data):
-        return("La película "+cleaned_data.get('titulo')+" se ha editado correctamente")
+    def form_valid(self, form):
+        if form.is_valid:
+            messages.success(
+                self.request,
+                "Película editada correctamente: {}".format(
+                    form.cleaned_data['titulo']),
+                extra_tags='edit'
+                )
+            return super(PeliculasEdit, self).form_valid(form)
+        else:
+            messages.error(self.request, "Algo ha salido mal")
 
 class PeliculasDelete(DeleteView):
     model = Pelicula
@@ -83,14 +93,21 @@ class PeliculasDelete(DeleteView):
         messages.success(self.request, self.success_message, extra_tags='success, delete')
         return super(PeliculasDelete, self).delete(request, *args, **kwargs)
 
-
 class PeliculasCreate(SuccessMessageMixin, CreateView):
     model = Pelicula
     form_class = PeliculaForm
     template_name = "videoclub/peliculas_create.html"
     success_url = reverse_lazy('peliculas_manage')
 
-    success_message = "Se creó correctamente"
-
-    def get_success_message(self, cleaned_data):
-        return self.success_message
+    def form_valid(self, form):
+        if form.is_valid:
+            messages.success(
+                self.request,
+                "{} se ha añadido a la base de datos".format(
+                        form.cleaned_data['titulo']
+                    ),
+                extra_tags='add success'
+            )
+            return super(PeliculasCreate, self).form_valid(form)
+        else:
+            messages.error(self.request, "Algo ha salido mal")
