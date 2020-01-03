@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
+{% load django_bootstrap_breadcrumbs %}
 {% block title %}
     Videoclub: Inicio
 {% endblock title %}
@@ -16,7 +17,7 @@
         <div class="carousel-inner" role="listbox">
 
             {% if view.peliculas %}
-                {% for pelicula in view.peliculas %}
+                {% for pelicula in view.peliculas|slice:":3" %}
 
                     {% if forloop.first %}
                         <div class="carousel-item active" style="background-image: url('{{pelicula.url_imagen_promocional}}')">
@@ -29,6 +30,7 @@
                         <p>{{pelicula.fecha}}</p>
                     </div>
                     </div>
+                    
                 {% endfor %}
             {% else %}
                 
@@ -49,11 +51,15 @@
 </header>
 {% endblock header %}
 
+{% block breadcrumbs %}
+{{ block.super }}
+{% endblock breadcrumbs %}
+
 {% block content %}
 
 <hr>
 <h2>Últimas películas</h2>
-<div class="row peliculas_index">
+<div  class="row peliculas_index">
 
     {% if view.peliculas %}
         {% for pelicula in view.peliculas %}
@@ -62,7 +68,7 @@
                     <a href="#"><img class="card-img-top" src="{{pelicula.url_imagen_promocional}}" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title text-center">
-                            <a href="#">{{pelicula.titulo}}</a>
+                            <a href="{% url 'pelicula' pelicula.id %}">{{pelicula.titulo}}</a>
                         </h4>
                         <h6 class="card-subtitle mb-2 text-muted text-center">
                             
@@ -100,6 +106,7 @@
     <h4>No hay ninguna película registrada</h4>
 
     {% endif %}
+
 </div>
 
 <hr>
@@ -141,21 +148,26 @@
 <h2>Mejores directores</h2>
 
 <div class="row directores_index">
-    {% if object_list %}
-        {% for pelicula in object_list.get_context_data %}
-            <div class="col-lg-4 col-sm-6 portfolio-item">
-                <div class="card h-100">
-                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">Project One</a>
-                        </h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
-                            aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt,
-                            dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+    {% if view.directores %}
+        {% for director in view.directores %}
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="image-flip">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p><img class=" img-fluid foto_director" src="{{director.url_foto}}" alt="card image"></p>
+                                    <h4 class="card-title">{{director.nombre}}</h4>
+                                    <p class="card-text">{{director.fecha_nacimiento}}</p>
+                                    <a href="#" class="btn btn-success btn-block">Ver ficha</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
         {% endfor %}
     {% else %}
     
@@ -163,8 +175,7 @@
 
     {% endif %}
         
- 
 </div>
+<hr>
 
 {% endblock content %}
-    

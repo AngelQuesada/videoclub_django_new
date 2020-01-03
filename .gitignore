@@ -4,3 +4,7 @@ videoclub_django/\.vscode/
 videoclub_django/apps/videoclub/migrations/
 
 \.vscode/
+
+videoclub_django/apps/videoclub/__pycache__/
+
+videoclub_django/videoclub_django/__pycache__/

@@ -1,32 +1,56 @@
-
+{% extends 'base/base.html' %}
+{% load django_bootstrap_breadcrumbs %}
+{% load staticfiles %}
 
 {% block title %}
-    Actor:
+Actor: {{actor.nombre}}
 {% endblock title %}
-    
+
+{% block breadcrumbs %}
+{{ block.super }}
+{% breadcrumb "Actores" "actores" %}
+{% breadcrumb actor.nombre actor.id %}
+{% endblock breadcrumbs %}
 
 {% block content %}
 
 <div class="row">
-    <div class="col-lg-6">
-        <h2>Modern Business Features</h2>
-        <p>The Modern Business template by Start Bootstrap includes:</p>
-        <ul>
-            <li>
-                <strong>Bootstrap v4</strong>
-            </li>
-            <li>jQuery</li>
-            <li>Font Awesome</li>
-            <li>Working contact form with validation</li>
-            <li>Unstyled page elements for easy customization</li>
-        </ul>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id
-            reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia
-            dolorum ducimus unde.</p>
+    {% render_breadcrumbs "django_bootstrap_breadcrumbs/bootstrap4.html"%}
+</div>
+
+<div class="row actor_detalle">
+
+    <div class="col-md-12 text-center mt-4">
+        <img class="foto" src="{{actor.url_foto}}" alt="">
     </div>
-    <div class="col-lg-6">
-        <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
+    <hr class="w-100">
+    <div class="ficha_actor w-100 mb-3 p-3">
+        <h2 class="text-center">{{actor.nombre}} ({{actor.get_edad}} años)</h2>
     </div>
+</div>
+
+<div class="row peliculas mt-3 mb-3 pt-3 pb-3">
+    <h3 class="w-100 pl-3">Ha participado en...</h3>
+    <hr class="w-100">
+    {% if actor.pelicula_set.all %}
+
+    {% for pelicula in actor.pelicula_set.all %}
+
+    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+        <div class="hovereffect">
+            <img class="img-responsive mt-1" src="{{pelicula.url_caratula}}" alt="">
+            <div class="overlay">
+                <h2>{{pelicula.titulo}}</h2>
+                <a class="info" href="{% url 'pelicula' pelicula.id %}">Alquilar</a>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+    {% else %}
+    <h4>No hay películas disponibles</h4>
+    {% endif %}
 </div>
 
 {% endblock content %}

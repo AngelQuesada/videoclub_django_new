@@ -1,6 +1,9 @@
 from django.db import models
 from django.utils.safestring import mark_safe
 from django.conf import settings
+from datetime import date
+import re
+
 
 class Actor(models.Model):
     nombre = models.CharField(max_length=100)
@@ -24,6 +27,14 @@ class Actor(models.Model):
 
     def url_foto(self):
         return settings.MEDIA_URL+str(self.foto)
+
+    def get_edad(self):
+        today = date.today()
+        return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
+
+    def get_num_peliculas(self):
+        n_peliculas = self.pelicula_set.count()
+        return n_peliculas
 
     def __str__(self):
         return self.nombre
@@ -51,6 +62,17 @@ class Director(models.Model):
 
     image_admin.short_description = 'Foto actual'
 
+    def get_edad(self):
+        today = date.today()
+        return today.year - self.fecha_nacimiento.year - ((today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day))
+
+    def url_foto(self):
+        return settings.MEDIA_URL+str(self.foto)
+
+    def get_num_peliculas(self):
+        n_peliculas = self.pelicula_set.count()
+        return n_peliculas
+
     def __str__(self):
         return self.nombre
 
@@ -62,7 +84,7 @@ class Genero(models.Model):
 
     def __str__(self):
         return self.nombre
-   
+
     class Meta:
         verbose_name_plural = "Géneros"
 
@@ -99,12 +121,13 @@ class Pelicula(models.Model):
     )
     genero = models.ManyToManyField(
         Genero,
-        blank=True
+        blank=True,
+        related_name='genero'
     )
     director = models.ForeignKey(
         Director,
         on_delete=models.SET('Sin Director')
-    ) 
+    )
     actores = models.ManyToManyField(
         Actor,
         blank=True
@@ -123,6 +146,36 @@ class Pelicula(models.Model):
     def url_imagen_promocional(self):
         return settings.MEDIA_URL+str(self.imagen_promocional)
 
+    def url_caratula(self):
+        return settings.MEDIA_URL+str(self.caratula)
+  
+    def nota_html(self):
+        html = ""
+        nota = int(self.nota)
+        if nota == 1:
+                html += "<i title='item' class='fas fa-star text-warning'></i>"
+        else:
+            for item in range(nota):
+                html += "<i title='probando' class='fas fa-star text-warning'></i>"
+
+        return mark_safe(html)
+    
+    def video_id(self, url_trailer):
+
+        regex = re.compile(r'(https?://)?(www\.)?(youtube|youtu|youtube-nocookie)\.(com|be)/(watch\?v=|embed/|v/|.+\?v=)?(?P<id>[A-Za-z0-9\-=_]{11})')
+
+        match = regex.match(url_trailer)
+
+        if not match:
+            return False
+
+        return mark_safe(match.group('id'))
+
+    def trailer_embed(self):
+        id_video = self.video_id(self.url_trailer)
+        code = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/"+id_video+"\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+        return mark_safe(code)
+
     def __str__(self):
         return self.titulo
 
@@ -137,7 +190,7 @@ class Copia(models.Model):
     )
 
     def __str__(self):
-        return "(ID: {}) {}".format(self.id, self.pelicula.titulo)
-  
+        return "(id: {}) {}".format(self.id, self.pelicula.titulo)
+
     class Meta:
         verbose_name_plural = "Copias"

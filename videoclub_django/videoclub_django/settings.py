@@ -36,8 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar', #Debug Toolbar
+    'debug_toolbar', #Debug toolbar
     'apps.videoclub',
+    'apps.accounts',
+    'django_bootstrap_breadcrumbs',
     'django_cleanup', # Esta app borrará los archivos multimedia cuando no los estés utilizando
 ]
 
@@ -148,3 +150,13 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 INTERNAL_IPS = ('127.0.0.1', '192.168.0.1',)
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'login'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'aquesada.pruebas@gmail.com'
+EMAIL_HOST_PASSWORD = 'pruebasypruebas'
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
